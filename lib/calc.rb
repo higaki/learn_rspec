@@ -1,4 +1,13 @@
 class Calc
+  def initialize(logger, amount = 0)
+    @logger, @amount = logger, amount
+  end
+
+  def amount
+    @logger.log()
+    @amount
+  end
+
   def add(a, b)
     a + b
   end

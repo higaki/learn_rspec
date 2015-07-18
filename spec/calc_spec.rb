@@ -1,7 +1,13 @@
 require 'calc'
 
 RSpec.describe Calc do # class を指定すると new してくれて subject で参照できる
-  subject(:calc) {Calc.new} # でも subject が何か自分で書いた方が分かりやすい
+  before do
+    @logger = double('logger')
+  end
+
+  subject(:calc) do # でも subject が何か自分で書いた方が分かりやすい
+    Calc.new(@logger)
+  end
 
   # describe は入れ子にできる
   # describe と context は同じだが、「状況」を表わす場合は context を使う
@@ -28,6 +34,11 @@ RSpec.describe Calc do # class を指定すると new してくれて subject �
       user = double('user')
       allow(user).to receive(:discount).and_return(0.8)
       calc.price(100, 0, user.discount).should eq(80)
+    end
+
+    example 'message expectation' do
+      expect(@logger).to receive(:log)
+      calc.amount.should eq(0)
     end
   end
 
