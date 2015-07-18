@@ -16,6 +16,15 @@ RSpec.describe "A calc" do
     it 'given 5 and 8, returns 13' do
       @calc.add(5, 8).should eq(13)
     end
+
+    example 'matchers'do
+      5.should eq(5)            # 等しい
+      5.should_not eq(4)        # 等しくない
+      (5==5).should be true
+      5.should be > 0
+      5.should be_between(2, 7).inclusive # 2..7
+      expect(@calc).to respond_to(:add)
+    end
   end
 
   context "when graph mode" do
