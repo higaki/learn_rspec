@@ -1,20 +1,18 @@
 require 'calc'
 
-RSpec.describe "A calc" do
-  before do
-    @calc = Calc.new
-  end
+RSpec.describe Calc do # class を指定すると new してくれて subject で参照できる
+  subject(:calc) {Calc.new} # でも subject が何か自分で書いた方が分かりやすい
 
   # describe は入れ子にできる
   # describe と context は同じだが、「状況」を表わす場合は context を使う
   context "when normal mode" do
     # it / example / specify は全て同じ。英語的な記述にこだわるなら使い分ける
     it 'given 2 and 3, returns 5' do
-      @calc.add(2, 3).should eq(5)
+      calc.add(2, 3).should eq(5)
     end
 
     it 'given 5 and 8, returns 13' do
-      @calc.add(5, 8).should eq(13)
+      calc.add(5, 8).should eq(13)
     end
 
     example 'matchers'do
@@ -23,7 +21,7 @@ RSpec.describe "A calc" do
       (5==5).should be true
       5.should be > 0
       5.should be_between(2, 7).inclusive # 2..7
-      expect(@calc).to respond_to(:add)
+      expect(calc).to respond_to(:add)
     end
   end
 
