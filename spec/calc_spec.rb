@@ -25,6 +25,20 @@ RSpec.describe Calc do # class を指定すると new してくれて subject �
     end
   end
 
+  context "when tax is 5%" do
+    let(:tax){0.05}
+    it "given 100, return 105" do
+      calc.price(100, tax).should eq(105)
+    end
+  end
+
+  context "when tax is 8%" do
+    let(:tax){0.08}
+    it "given 100, return 108" do
+      calc.price(100, tax).should eq(108)
+    end
+  end
+
   context "when graph mode" do
     it "draw graph" # pending
   end
