@@ -3,7 +3,7 @@ class Calc
     a + b
   end
 
-  def price(a, tax)
-    a * (1 + tax)
+  def price(a, tax = 0, discount = 1.0)
+    a * (1 + tax) * discount
   end
 end

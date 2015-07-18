@@ -23,6 +23,12 @@ RSpec.describe Calc do # class を指定すると new してくれて subject �
       5.should be_between(2, 7).inclusive # 2..7
       expect(calc).to respond_to(:add)
     end
+
+    example 'test double' do
+      user = double('user')
+      allow(user).to receive(:discount).and_return(0.8)
+      calc.price(100, 0, user.discount).should eq(80)
+    end
   end
 
   context "when tax is 5%" do
